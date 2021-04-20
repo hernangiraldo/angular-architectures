@@ -1,11 +1,12 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { UserService } from './interfaces/user.service';
-import { API_SIGNATURE, PROVIDERS } from '../../core/const';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { API_SIGNATURE } from '../../core/const';
 import { Observable } from 'rxjs';
 import { UserModel } from './models/user.model';
-import { HttpStatusService, IHttpStatus } from '../../core/entities/interfaces/http-status.service';
-import {GetUsersService} from './models/get-users.service';
-import {GetUserService} from './models/get-user.service';
+import { IHttpStatus } from '../../core/interfaces/http-status.service';
+import {HttpStatusImplementationService} from '../../core/singletons/http-status-implementation.service';
+import {HttpGetUsersService} from './services/http-get-users.service';
+import {HttpGetUserService} from './services/http-get-user.service';
+import {HttpUserService} from './services/http-user.service';
 
 @Component({
   selector: 'app-login',
@@ -20,9 +21,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   public userStatus$: Observable<IHttpStatus>;
 
   constructor(
-    @Inject(PROVIDERS.HTTP_STATUS_SERVICE) private httpStatusSvc: HttpStatusService,
-    @Inject(PROVIDERS.GET_USERS_SERVICES) private getUsersSvc: GetUsersService,
-    @Inject(PROVIDERS.GET_USER_SERVICES) private getUserSvc: GetUserService,
+    private readonly httpStatusSvc: HttpStatusImplementationService,
+    private readonly getUsersSvc: HttpGetUsersService,
+    private readonly getUserSvc: HttpGetUserService,
+    private readonly usersSvc: HttpUserService
   ) {
     this.usersStatus$ = httpStatusSvc.subscribe(API_SIGNATURE.GET_CHARACTERS);
     this.userStatus$ = httpStatusSvc.subscribe(API_SIGNATURE.GET_CHARACTER);
@@ -41,10 +43,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public getCharacters(): void {
     this.users$ = this.getUsersSvc.execute();
+    // this.users$ = this.usersSvc.getAll();
   }
 
   public getUser(): void {
     this.user$ = this.getUserSvc.execute();
+    // this.user$ = this.usersSvc.getUser();
   }
 
 }

@@ -1,18 +1,14 @@
-import {Inject, Injectable} from '@angular/core';
-import {GetUserService} from '../models/get-user.service';
+import {Injectable} from '@angular/core';
 import {UserModel} from '../models/user.model';
 import {Observable, of} from 'rxjs';
-import {PROVIDERS} from '../../../core/const';
-import {HttpService} from '../../../core/entities/interfaces/http.service';
+import {HttpImplementationService} from '../../../core/singletons/http-implementation.service';
 
 @Injectable()
-export class HttpGetUserService extends GetUserService {
+export class HttpGetUserService {
 
   constructor(
-    @Inject(PROVIDERS.HTTP_SERVICE) private http: HttpService
-  ) {
-    super();
-  }
+    private readonly http: HttpImplementationService
+  ) { }
 
   execute(): Observable<UserModel> {
     return of();

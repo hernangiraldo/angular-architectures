@@ -1,20 +1,21 @@
 import {Inject, Injectable} from '@angular/core';
-import {DeleteParams, GetParams, HttpService, PostParams, PutParams} from '../entities/interfaces/http.service';
+import {DeleteParams, GetParams, PostParams, PutParams} from '../interfaces/http.service';
 import {Observable, throwError} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {catchError, delay, map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
-import {PROVIDERS} from '../const';
-import {HttpStatusService} from '../entities/interfaces/http-status.service';
+import {HttpStatusImplementationService} from './http-status-implementation.service';
 
-@Injectable()
-export class HttpImplementationService implements HttpService {
+@Injectable({
+  providedIn: 'root'
+})
+export class HttpImplementationService {
 
   readonly #backUrl: string;
 
   constructor(
-    private httpClient: HttpClient,
-    @Inject(PROVIDERS.HTTP_STATUS_SERVICE) private httpStatusSvc: HttpStatusService
+    private readonly httpClient: HttpClient,
+    private readonly httpStatusSvc: HttpStatusImplementationService
   ) {
     this.#backUrl = environment.backUrl;
   }

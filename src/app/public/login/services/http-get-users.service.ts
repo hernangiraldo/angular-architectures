@@ -1,20 +1,18 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { UserModel } from '../models/user.model';
-import { Observable, of } from 'rxjs';
-import { GetParams, HttpService } from '../../../core/entities/interfaces/http.service';
-import { API_SIGNATURE, API_URLS, PROVIDERS } from '../../../core/const';
+import { Observable } from 'rxjs';
+import { GetParams } from '../../../core/interfaces/http.service';
+import { API_SIGNATURE, API_URLS } from '../../../core/const';
 import { map } from 'rxjs/operators';
-import { GetListsDto } from '../../../core/entities/dtos/get-lists.dto';
+import { GetListsDto } from '../../../core/dtos/get-lists.dto';
 import { GetCharacterDto } from '../dtos/get-character.dto';
-import {GetUsersService} from '../models/get-users.service';
+import {HttpImplementationService} from '../../../core/singletons/http-implementation.service';
 
 @Injectable()
-export class HttpGetUsersService extends GetUsersService {
+export class HttpGetUsersService {
   constructor(
-    @Inject(PROVIDERS.HTTP_SERVICE) private http: HttpService
-  ) {
-    super();
-  }
+    private readonly http: HttpImplementationService
+  ) { }
 
   execute(): Observable<UserModel[]> {
     const params: GetParams = {

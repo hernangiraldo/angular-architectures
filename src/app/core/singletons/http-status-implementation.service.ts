@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpStatusService, HttpStatusType, IHttpStatus} from '../entities/interfaces/http-status.service';
+import {HttpStatusType, IHttpStatus} from '../interfaces/http-status.service';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-@Injectable()
-export class HttpStatusImplementationService implements HttpStatusService {
+@Injectable({
+  providedIn: 'root'
+})
+export class HttpStatusImplementationService {
 
   requestStatus = new BehaviorSubject<Map<string, IHttpStatus>>(new Map());
   #baseValue = {
