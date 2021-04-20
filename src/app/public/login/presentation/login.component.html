@@ -1,0 +1,11 @@
+<ng-container *ngIf="(usersStatus$ | async) as status">
+
+  <p *ngIf="status.loading">Loading...</p>
+
+  <div [hidden]="!status.success" *ngFor="let users of users$ | async">
+    <p>{{ users.id }} - {{ users.name }}</p>
+  </div>
+
+  <button *ngIf="status.error" (click)="getCharacters()">Try again</button>
+
+</ng-container>
