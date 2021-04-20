@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@angular/core';
-import { UserModel } from '../entities/models/user.model';
+import { UserModel } from '../models/user.model';
 import { Observable, of } from 'rxjs';
 import { GetParams, HttpService } from '../../../core/entities/interfaces/http.service';
 import { API_SIGNATURE, API_URLS, PROVIDERS } from '../../../core/const';
 import { map } from 'rxjs/operators';
 import { GetListsDto } from '../../../core/entities/dtos/get-lists.dto';
-import { GetCharacterDto } from '../entities/dtos/get-character.dto';
-import {GetUsersService} from '../entities/models/get-users.service';
+import { GetCharacterDto } from '../dtos/get-character.dto';
+import {GetUsersService} from '../models/get-users.service';
 
 @Injectable()
 export class HttpGetUsersService extends GetUsersService {

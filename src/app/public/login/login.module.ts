@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './use-cases/login.component';
-import {HttpGetUsersService} from './domain/http-get-users.service';
+import { LoginComponent } from './login.component';
+import {HttpGetUsersService} from './services/http-get-users.service';
 import { PROVIDERS } from '../../core/const';
-import {HttpGetUserService} from './domain/http-get-user.service';
-import {HttpUserService} from './domain/http-user.service';
+import {HttpGetUserService} from './services/http-get-user.service';
+import {HttpUserService} from './services/http-user.service';
 
 
 @NgModule({
