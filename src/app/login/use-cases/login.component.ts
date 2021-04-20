@@ -1,9 +1,9 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../entities/interfaces/user.service';
-import { API_SIGNATURE, PROVIDERS } from '../../../core/const';
+import { API_SIGNATURE, PROVIDERS } from '../../core/const';
 import { Observable } from 'rxjs';
 import { UserModel } from '../entities/models/user.model';
-import { HttpStatusService, IHttpStatus } from '../../../core/entities/interfaces/http-status.service';
+import { HttpStatusService, IHttpStatus } from '../../core/entities/interfaces/http-status.service';
 import {GetUsersService} from '../entities/models/get-users.service';
 import {GetUserService} from '../entities/models/get-user.service';
 

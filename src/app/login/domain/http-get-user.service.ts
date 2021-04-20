@@ -2,8 +2,8 @@ import {Inject, Injectable} from '@angular/core';
 import {GetUserService} from '../entities/models/get-user.service';
 import {UserModel} from '../entities/models/user.model';
 import {Observable, of} from 'rxjs';
-import {PROVIDERS} from '../../../core/const';
-import {HttpService} from '../../../core/entities/interfaces/http.service';
+import {PROVIDERS} from '../../core/const';
+import {HttpService} from '../../core/entities/interfaces/http.service';
 
 @Injectable()
 export class HttpGetUserService extends GetUserService {
